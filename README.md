@@ -1,5 +1,8 @@
 ### Sample use of official Jumio cordova plugin in Capacitor + Ionic + Angular app.
 
+It's vanilla app with no modifications, generated as described here: https://capacitorjs.com/docs/getting-started/with-ionic
+
+
 Target environments: Android, iOS.
 
 ## Prerequisites:
