@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>jumio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <form #form="ngForm">
+    <ion-input [(ngModel)]="authToken" name="authToken" label="authToken" [required]="true"></ion-input>
+    <ion-button (click)="init()" [disabled]="form.invalid"></ion-button>
+  </form>
+
+</ion-content>

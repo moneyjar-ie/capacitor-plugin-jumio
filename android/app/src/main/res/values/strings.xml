@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">sampleApp</string>
+    <string name="title_activity_main">sampleApp</string>
+    <string name="package_name">world.moneyjar.sample</string>
+    <string name="custom_url_scheme">world.moneyjar.sample</string>
+</resources>
