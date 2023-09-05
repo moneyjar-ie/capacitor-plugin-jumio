@@ -6,9 +6,6 @@
 
 <ion-content [fullscreen]="true">
 
-  <form #form="ngForm">
-    <ion-input [(ngModel)]="authToken" name="authToken" label="authToken" [required]="true"></ion-input>
-    <ion-button (click)="init()" [disabled]="form.invalid"></ion-button>
-  </form>
+  <ion-button (click)="startSession()">start</ion-button>
 
 </ion-content>
