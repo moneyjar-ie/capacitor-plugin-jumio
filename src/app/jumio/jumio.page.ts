@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-declare var Jumio: {
-  initialize: (token: string | undefined, datacenter: 'US' | 'EU' | 'SG') => any;
-  start: (
-    successCallback: (re: any) => any,
-    errorCallback: (err: any) => any
-  ) => any;
-};
+import { JumioService } from '../jumio.service';
+declare var Jumio: any;
 
 @Component({
   selector: 'app-jumio',
@@ -15,23 +9,27 @@ declare var Jumio: {
 })
 export class JumioPage implements OnInit {
 
-  constructor() {
+  apiUrlInput = '';
+  authToken = '';
+
+  constructor(
+    private jumioService: JumioService,
+  ) {
   }
 
   ngOnInit() {
   }
 
-  async startSession() {
-    const token = 'sssfdggfdgh';
+  setApiUrl() {
+    localStorage.setItem('apiUrl', this.apiUrlInput);
+  }
 
-    console.log('Jumio.initialize.start', token);
-    const j1 = Jumio.initialize(token, 'EU');
-    console.log('Jumio.initialize.end', j1);
-    const j2 = Jumio.start(
-      re => console.log('Jumio.start.ok', re),
-      err => console.log('Jumio.start.err', err),
-    );
-    console.log('Jumio.start.end', j2);
+  get apiUrl() {
+    return localStorage.getItem('apiUrl');
+  }
+
+  async start() {
+    await this.jumioService.startSession();
   }
 
 }

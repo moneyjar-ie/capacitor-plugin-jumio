@@ -6,6 +6,11 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-button (click)="startSession()">start</ion-button>
+  <form #form="ngForm" *ngIf="!apiUrl">
+    <ion-input [(ngModel)]="apiUrlInput" name="apiUrlInput" label="apiUrl" type="url" [required]="true"></ion-input>
+    <ion-button (click)="setApiUrl()" [disabled]="form.invalid">set api url</ion-button>
+  </form>
+
+  <ion-button (click)="start()" [disabled]="!apiUrl">start</ion-button>
 
 </ion-content>

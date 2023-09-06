@@ -22,14 +22,25 @@ export class JumioService {
   async startSession() {
     const token = await this.getToken();
 
-    console.log('Jumio.initialize.start', token);
-    const j1 = Jumio.initialize(token, 'EU');
-    console.log('Jumio.initialize.end', j1);
-    const j2 = Jumio.start(
-      re => console.log('Jumio.start.ok', re),
-      err => console.log('Jumio.start.err', err),
-    );
-    console.log('Jumio.start.end', j2);
+    try {
+      console.log('Jumio.initialize', token, 'EU');
+      Jumio.initialize(token, 'EU');
+
+      console.log('Jumio.start');
+      Jumio.start(
+        async (re: {
+          accountId: string, // e.g. "72e1faf6-045e-4a0b-b25c-3ce32c7074eb"
+          credentials: string, // e.g. "[{\"credentialId\":\"43068a74-400a-4fe5-9fde-4e9b8d4cb462\",\"credentialCategory\":\"ID\"}, {\"credentialId\":\"57bfe9fc-7ccc-4480-bcdc-f5c803d52864\",\"credentialCategory\":\"FACE\",\"passed\":\"true\"}]"
+        }) => {
+          console.log('Jumio.start.ok', re);
+          // await this.completeSession();
+        },
+        err => console.log('Jumio.start.err', err),
+      );
+
+    } catch (e) {
+      console.log('Jumio.ERROR', e);
+    }
   }
 
   getToken() {
